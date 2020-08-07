@@ -6,6 +6,29 @@ const FULL_HEART = '♥'
 
 
 
+function likeClick() {
+
+  document.addEventListener("click", function(event) {
+
+    if (event.target.matches(".like-glyph")) {
+      const button = event.target
+        if (button.innerText === EMPTY_HEART) {
+          mimicServerCall()
+          
+          button.innerText = FULL_HEART
+          button.style.color = "red"
+        } else {
+          button.innerText = EMPTY_HEART
+          button.style.color = ""
+        }
+    }
+
+  })
+}
+
+likeClick()
+
+
 
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
