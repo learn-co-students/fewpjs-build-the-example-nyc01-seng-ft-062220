@@ -4,8 +4,19 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
-
-
+document.addEventListener("click", function(e) {
+  e.preventDefault()
+  function changeLikes() {}
+    if (e.target.className === 'like') {
+      if (e.target.lastChild.innerText === EMPTY_HEART) {
+        e.target.lastChild.style.color = 'red'
+        e.target.lastChild.innerText = FULL_HEART
+      }
+      else {
+        e.target.lastChild.innerText = EMPTY_HEART
+      }
+    }
+})
 
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
