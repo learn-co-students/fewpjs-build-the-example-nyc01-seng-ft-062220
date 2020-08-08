@@ -9,6 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const FULL_HEART = '♥'
     const heart = e.target;
 
+    if (!document.getElementById("modal").classList.contains("hidden")) {
+      document.getElementById("modal").classList.add("hidden");
+    }
+
     // fake API calls to practice juggling between server action and error handling
     mimicServerCall("ureeel")
     .then(response => {
