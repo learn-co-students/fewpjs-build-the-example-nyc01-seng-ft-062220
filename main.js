@@ -1,9 +1,52 @@
 // Defining text characters for the empty and full hearts for you to use later.
-const EMPTY_HEART = '♡'
-const FULL_HEART = '♥'
+
 
 // Your JavaScript code goes here!
+document.addEventListener("DOMContentLoaded", () => {
 
+  const glyphToggle = (e) => {
+    const EMPTY_HEART = '♡'
+    const FULL_HEART = '♥'
+    const heart = e.target;
+
+    // fake API calls to practice juggling between server action and error handling
+    mimicServerCall("ureeel")
+    .then(response => {
+      console.log(response);
+      if (heart.textContent === FULL_HEART || heart.classList.contains("activated-heart")) {
+        heartOff();
+      } else {
+        heartOn();
+      }
+    })
+    .catch(error => {
+      console.log(error);
+      document.getElementById("modal").classList.remove("hidden");
+    })
+  
+    // helper functions below
+    function heartOn() {
+      heart.classList.add("activated-heart");
+      heart.textContent = FULL_HEART;
+      return "on";
+    }
+    function heartOff() {
+      heart.classList.remove("activated-heart");
+      heart.textContent = EMPTY_HEART;
+      return "off";
+    }
+  }
+
+  const createLikeEvents = () => {
+    const heartGlyphs = document.querySelectorAll(".like-glyph")
+
+    for (const heart of heartGlyphs) {
+      heart.addEventListener("click", glyphToggle)
+    }
+  }
+
+  createLikeEvents();
+})
 
 
 
