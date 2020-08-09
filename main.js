@@ -3,6 +3,45 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
+document.addEventListener("DOMContentLoaded", e => {
+
+  const likeHeart = () => {
+    document.addEventListener("click", e => {
+
+
+      if(e.target.matches("li.like")) {
+
+        const likeButton = e.target
+        const heartIcon = likeButton.querySelector("span")
+
+        if (heartIcon.textContent === EMPTY_HEART) {
+          heartIcon.textContent = FULL_HEART
+          heartIcon.className = "activated-heart"
+
+        } else {
+
+          heartIcon.textContent = EMPTY_HEART
+          heartIcon.className = ""
+
+        }
+
+
+
+      }
+
+
+    })
+
+
+
+  }
+
+
+
+
+
+  likeHeart()
+})
 
 
 
