@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", e => {
 
   const likeHeart = () => {
     document.addEventListener("click", e => {
+      e.preventDefault()
 
 
       if(e.target.matches("li.like")) {
@@ -17,28 +18,42 @@ document.addEventListener("DOMContentLoaded", e => {
         if (heartIcon.textContent === EMPTY_HEART) {
           heartIcon.textContent = FULL_HEART
           heartIcon.className = "activated-heart"
+          pushToServer()
 
         } else {
 
           heartIcon.textContent = EMPTY_HEART
           heartIcon.className = ""
+          pushToServer()
 
         }
 
-
-
       }
-
 
     })
 
-
-
   }
 
+  const pushToServer = () => {
 
+     mimicServerCall()
+         .then(() => {})
+         .catch(error => processError(error))
+  }
 
+  const processError = (error) => {
+    console.log(error)
 
+    const errorHeader = document.getElementById("modal")
+    errorHeader.className = "hidden"
+
+    if (error === "Random server error. Try again.") {
+      errorHeader.className = ""
+    } else if (error === "Pretend remote server notified of action!") {
+      errorHeader.className = "hidden"
+      console.log(errorHeader)
+    }
+  }
 
   likeHeart()
 })
